@@ -90,11 +90,8 @@ public class Dictionary<K, V> {
      * @return If the entry exists or not.
      */
     public boolean exists(K key) {
-        for (Entry<K, V> entry : entries)
-            if (entry.key == key)
-                return true;
-
-        return false;
+        return entries.stream()
+                .anyMatch(entry -> entry.key == key);
     }
 
     /**

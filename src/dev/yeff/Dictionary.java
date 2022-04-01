@@ -66,12 +66,12 @@ public class Dictionary<K, V> {
      * @return The value.
      */
     public V get(K key) {
-        for (Entry<K, V> entry : entries) {
-            if (entry.key == key)
-                return entry.value;
-        }
+        return entries.stream()
+                .filter(entry -> entry.key == key)
+                .findFirst()
+                .map(entry -> entry.value)
+                .orElse(null);
 
-        return null;
     }
 
     /**
